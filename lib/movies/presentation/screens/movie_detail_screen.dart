@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movies_app/core/utils/app_string.dart';
 import 'package:movies_app/movies/domain/entities/genres.dart';
 import 'package:movies_app/movies/presentation/controller/movies_details_cubit/movies_details_cubit.dart';
 import '../../../core/network/api_constants.dart';
@@ -17,7 +18,7 @@ class MovieDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => sl<MoviesDetailsCubit>()..getMovieDetailsData(id),
-      child: Scaffold(
+      child: const Scaffold(
         body: MovieDetailContent(),
       ),
     );
@@ -162,7 +163,7 @@ class MovieDetailContent extends StatelessWidget {
                         ),
                         const SizedBox(height: 8.0),
                         Text(
-                          'Genres: ${_showGenres(cubit.movieDetails.genres)}',
+                          '${AppString.genres} ${_showGenres(cubit.movieDetails.genres)}',
                           style: const TextStyle(
                             color: Colors.white70,
                             fontSize: 12.0,
@@ -176,7 +177,7 @@ class MovieDetailContent extends StatelessWidget {
                 ),
               ), // Tab(text: 'More like this'.toUpperCase()),
             ],
-          );    
+          );
         }
       },
     );
